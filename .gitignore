@@ -1,0 +1,8 @@
+# Database configuration
+config/database.php
+
+# System files
+.DS_Store
+.env
+vendor/
+*.log 
