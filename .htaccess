@@ -1,0 +1,17 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+# Allow access to all files
+<FilesMatch ".*">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Prevent viewing of .htaccess file
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevent viewing of .git directory
+RedirectMatch 404 /\.git.*$ 
