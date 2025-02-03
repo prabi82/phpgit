@@ -5,4 +5,7 @@ config/database.php
 .DS_Store
 .env
 vendor/
-*.log 
+*.log
+
+# Keep the sample config
+!config/database.sample.php 
