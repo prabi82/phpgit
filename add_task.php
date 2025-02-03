@@ -26,6 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         require_once 'config/database.php';
         require_once 'includes/functions.php';
         
+        // Log the POST data
+        error_log('POST data received: ' . print_r($_POST, true));
+        
         $title = trim($_POST['title'] ?? '');
         $description = trim($_POST['description'] ?? '');
         
@@ -33,10 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Title is required");
         }
         
+        // Test database connection
+        $test = $pdo->query('SELECT 1');
+        if (!$test) {
+            throw new Exception("Database connection test failed");
+        }
+        
+        // Try to add the task
         $result = addTask($pdo, $title, $description);
         
         if ($result) {
-            $_SESSION['message'] = "Task added successfully!";
+            $_SESSION['message'] = "Task '$title' was successfully added!";
             $_SESSION['message_type'] = 'success';
             // Redirect immediately after successful addition
             header('Location: index.php');
@@ -48,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (Exception $e) {
         $_SESSION['message'] = "Error: " . $e->getMessage();
         $_SESSION['message_type'] = 'error';
+        error_log("Task add error: " . $e->getMessage());
         header('Location: index.php');
         exit;
     }
@@ -118,12 +129,18 @@ exit;
         }
         log_debug("Database connected");
         
+        // Test database connection
+        $test = $pdo->query('SELECT 1');
+        if (!$test) {
+            throw new Exception("Database connection test failed");
+        }
+        
         // Try to add task
         $result = addTask($pdo, $title, $description);
         log_debug("Add task result", $result);
         
         if ($result) {
-            $_SESSION['message'] = "Task added successfully!";
+            $_SESSION['message'] = "Task '$title' was successfully added!";
             $_SESSION['message_type'] = 'success';
             echo "<div class='success'>Task added successfully! Redirecting...</div>";
             header("refresh:2;url=index.php");

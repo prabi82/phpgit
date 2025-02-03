@@ -6,6 +6,14 @@ ini_set('display_errors', 1);
 require_once 'config/database.php';
 require_once 'includes/functions.php';
 
+// Test database connection
+try {
+    $test = $pdo->query('SELECT 1');
+    echo "<!-- Database connected successfully -->";
+} catch (Exception $e) {
+    die('Database connection failed: ' . $e->getMessage());
+}
+
 try {
     $tasks = getAllTasks($pdo);
 } catch (Exception $e) {
