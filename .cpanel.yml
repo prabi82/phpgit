@@ -3,18 +3,5 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/omaniservers/public_html/phpgit
     - /bin/mkdir -p $DEPLOYPATH
-    - /bin/cp -R includes $DEPLOYPATH/
-    - /bin/cp -R css $DEPLOYPATH/
-    - /bin/cp -R config $DEPLOYPATH/
-    - /bin/cp index.php $DEPLOYPATH/
-    - /bin/cp add_task.php $DEPLOYPATH/
-    - /bin/cp delete_task.php $DEPLOYPATH/
-    - /bin/cp .htaccess $DEPLOYPATH/
-    - /bin/cp test_deploy.php $DEPLOYPATH/
-    - /bin/cp php.ini $DEPLOYPATH/
-    - /bin/cp phpinfo.php $DEPLOYPATH/
-    - /bin/chmod 755 $DEPLOYPATH
-    - /bin/find $DEPLOYPATH -type d -exec /bin/chmod 755 {} \;
-    - /bin/find $DEPLOYPATH -type f -exec /bin/chmod 644 {} \;
-    - /bin/chmod 755 $DEPLOYPATH/config
-    - /bin/chmod 644 $DEPLOYPATH/config/database.php 
+    - /bin/cp test.php $DEPLOYPATH/
+    - /bin/chmod 644 $DEPLOYPATH/test.php 
