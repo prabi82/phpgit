@@ -15,3 +15,14 @@ RewriteEngine On
 
 # Prevent viewing of .git directory
 RedirectMatch 404 /\.git.*$ 
+
+# PHP Settings
+php_flag display_errors on
+php_value error_reporting E_ALL
+php_value include_path ".:/usr/lib/php:/usr/local/lib/php"
+php_value extension_dir "/usr/local/lib/php/extensions"
+php_value date.timezone "Asia/Muscat"
+
+# Load PDO Extensions
+php_extension pdo.so
+php_extension pdo_mysql.so 
