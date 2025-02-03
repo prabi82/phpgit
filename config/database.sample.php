@@ -1,5 +1,5 @@
 <?php
-// Sample database configuration - DO NOT PUT REAL CREDENTIALS HERE
+// Sample database configuration - Copy this to database.local.php or database.live.php
 $host = 'localhost';
 $dbname = 'your_database_name';
 $username = 'your_username';

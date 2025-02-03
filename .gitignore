@@ -1,5 +1,6 @@
 # Database configuration
-config/database.php
+config/database.local.php
+config/database.live.php
 
 # System files
 .DS_Store
